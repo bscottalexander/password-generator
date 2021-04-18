@@ -1,0 +1,3 @@
+# Password Generator
+
+This program is a password generator. It asks what the requirements are for the password and randomly generates a password based on the criteria provided. This project makes it simple to generate a secure and random password for any website. My project should stand out because it is coded in an easy to read manner from scratch. I plan to use this program to generate secure passwords for the future.

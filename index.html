@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link href="stylesheet.css" rel="stylesheet" />
+    <title>Password Generator</title>
+  </head>
+  <body class="mdc-typography">
+    <header class="mdc-top-app-bar">
+      <div class="mdc-top-app-bar__row">
+        <section
+          class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+        >
+          <span class="mdc-top-app-bar__title">Password Generator</span>
+        </section>
+      </div>
+    </header>
+    <main class="mdc-top-app-bar--fixed-adjust">
+      <div class="page-content">
+        <h1 class="mdc-typography--headline3">Generate a Password</h1>
+        <div class="mdc-card password-card">
+          <span id="password-result" class="mdc-typography--body1"
+            >Your Secure Password</span
+          >
+        </div>
+        <div style="height: 32px"></div>
+        <button
+          id="generate-password-button"
+          class="mdc-button mdc-button--outlined"
+        >
+          <div class="mdc-button__ripple"></div>
+          <span class="mdc-button__label">Generate Password</span>
+        </button>
+      </div>
+    </main>
+    <div class="mdc-dialog">
+      <div class="mdc-dialog__container">
+        <div
+          class="mdc-dialog__surface"
+          role="alertdialog"
+          aria-modal="true"
+          aria-labelledby="my-dialog-title"
+          aria-describedby="my-dialog-content"
+        >
+          <h2 class="mdc-dialog__title">Configure Your Password</h2>
+          <div class="mdc-dialog__content" id="my-dialog-content">
+            <div class="password-config-container">
+              <div class="password-config-item">
+                <label for="length-slider-input">Length</label>
+                <div style="flex-grow: 1">
+                  <div class="mdc-slider">
+                    <input
+                      id="length-slider-input"
+                      class="mdc-slider__input"
+                      type="range"
+                      min="8"
+                      max="128"
+                      value="8"
+                      name="length-slider"
+                      aria-label="Password Length"
+                    />
+                    <div class="mdc-slider__track">
+                      <div class="mdc-slider__track--inactive"></div>
+                      <div class="mdc-slider__track--active">
+                        <div class="mdc-slider__track--active_fill"></div>
+                      </div>
+                    </div>
+                    <div class="mdc-slider__thumb">
+                      <div class="mdc-slider__thumb-knob"></div>
+                    </div>
+                  </div>
+                </div>
+                <label id="password-length-label">8</label>
+              </div>
+              <div class="password-config-item">
+                <label for="uppercase-switch-input"
+                  >Use uppercase letters (A-Z)</label
+                >
+                <div style="min-width: 20px"></div>
+                <div id="uppercase-switch" class="mdc-switch">
+                  <div class="mdc-switch__track"></div>
+                  <div class="mdc-switch__thumb-underlay">
+                    <div class="mdc-switch__thumb"></div>
+                    <input
+                      type="checkbox"
+                      id="uppercase-switch-input"
+                      class="mdc-switch__native-control"
+                      role="switch"
+                      aria-checked="false"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div style="min-height: 15px"></div>
+              <div class="password-config-item">
+                <label for="lowercase-switch-input"
+                  >Use lowercase letters (a-z)</label
+                >
+                <div style="min-width: 20px"></div>
+                <div id="lowercase-switch" class="mdc-switch">
+                  <div class="mdc-switch__track"></div>
+                  <div class="mdc-switch__thumb-underlay">
+                    <div class="mdc-switch__thumb"></div>
+                    <input
+                      type="checkbox"
+                      id="lowercase-switch-input"
+                      class="mdc-switch__native-control"
+                      role="switch"
+                      aria-checked="false"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div style="min-height: 15px"></div>
+              <div class="password-config-item">
+                <label for="digit-switch-input">Use digits (0-9)</label>
+                <div style="min-width: 20px"></div>
+                <div id="digits-switch" class="mdc-switch">
+                  <div class="mdc-switch__track"></div>
+                  <div class="mdc-switch__thumb-underlay">
+                    <div class="mdc-switch__thumb"></div>
+                    <input
+                      type="checkbox"
+                      id="digit-switch-input"
+                      class="mdc-switch__native-control"
+                      role="switch"
+                      aria-checked="false"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div style="min-height: 15px"></div>
+              <div class="password-config-item">
+                <label for="synbol-switch-input">Use symbols</label>
+                <div style="min-width: 20px"></div>
+                <div id="symbols-switch" class="mdc-switch">
+                  <div class="mdc-switch__track"></div>
+                  <div class="mdc-switch__thumb-underlay">
+                    <div class="mdc-switch__thumb"></div>
+                    <input
+                      type="checkbox"
+                      id="symbol-switch-input"
+                      class="mdc-switch__native-control"
+                      role="switch"
+                      aria-checked="false"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mdc-dialog__actions">
+            <button
+              type="button"
+              class="mdc-button mdc-dialog__button"
+              data-mdc-dialog-action="close"
+            >
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">Cancel</span>
+            </button>
+            <button
+              id="ok-button"
+              type="button"
+              class="mdc-button mdc-dialog__button"
+              data-mdc-dialog-action="accept"
+              disabled
+            >
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">OK</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mdc-dialog__scrim"></div>
+    </div>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="main.js" onload="main()"></script>
+  </body>
+</html>
